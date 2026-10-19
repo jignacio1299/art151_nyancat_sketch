@@ -1,4 +1,4 @@
-//ADD names of group members at top of sketch 
+//Jayden and Abdul
 //Please have each group member DUPLICATE THIS SKETCH and have it saved in your accounts
 //Everyone will be submitting their versions individually 
 //There are ~24 bugs + version control 
@@ -32,19 +32,18 @@ let playbackRate = 1.0;
 async function setup() { 
   createCanvas(400, 400);
   // background(noNyan);
-  nyan = await loadSound('medias/nyanCat.mp3'); //x
+  nyan = await createAudio('medias/nyanCat.mp3'); //x
   noNyan = await loadImage('medias/nyancatless.gif'); //x
-  // sprinkles = await loadImage('sprinkles.jpg'); //x
- 
+  // sprinkles = await loadImage('sprinkles.jpg'); //unused
 }
 
 function draw() {
   background(noNyan);
   
   // Draw all circles
-  for (let circle of circles) { //x
+  for (let circle of circles) { //typo
     fill(circle.colors); 
-    ellipse(circle.x, circle.y, 50, 50); //x
+    ellipse(circle.x, circle.y, 50, 50); //typo
   }
   
 
@@ -62,31 +61,32 @@ function draw() {
 function mousePressed() {
   let c = random(colors);
   let newCircle = {
-    x: mouseX,//x
+    x: mouseX,//typo
     y: mouseY,
     color: color(c[0], c[1], c[2])
   };
   circles.push(newCircle);
-  nyan.volume(0.5); //x
-  nyan.rate(playbackRate); 
+  nyan.volume(0.5); //x 
+  nyan.speed(playbackRate); 
   nyan.loop();
   
+  nyan.play(); //added to play the sound
 }
 function mouseReleased(){
   nyan.stop();
-} //
+} // Missing right bracket
 
 
 function keyPressed() {
-  if (keyCode === UP_ARROW) { //
+  if (key === UP_ARROW) { //
     playbackRate += 0.1; //
-    nyan.rate(playbackRate); 
-  } else if (keyCode === DOWN_ARROW) { //
+    nyan.speed(playbackRate); 
+  } else if (key === DOWN_ARROW) { //
     playbackRate = max(0.1, playbackRate - 0.2); 
-    nyan.rate(playbackRate);
-  } else if (keyCode === LEFT_ARROW) { //
-    playbackRate = playbackRate * 1; 
-    nyan.rate(playBackRate);
+    nyan.speed(playbackRate);
+  } else if (key === LEFT_ARROW) { //
+    playbackRate = 1; //x 
+    nyan.speed(playbackRate); //x
   }
 }
 // }
